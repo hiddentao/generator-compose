@@ -43,13 +43,17 @@ var obj1 = {},
   obj2 = {};
 
 try {
-  var fn = yield compose(middleware)
+  var fn = yield compose(middleware);
 
   fn(obj1, obj2);
 } catch (err) {
   // catch error thrown from within middleware methods
 }
 ```
+
+As shown above, each middleware method gets passed the original parameters as 
+well as a final `next` callback - which allows it to pass control to the next 
+middleware in the chain.
 
 By default the `this` context within each middleware method is the same as that 
 for the outer call:
@@ -67,7 +71,7 @@ this.value = 2;
 
 var fn = yield compose(middleware);
 
-fn();  // same as: composedFn.call(this)
+fn();  // same as: fn.call(this)
 ```
 
 ## Building
