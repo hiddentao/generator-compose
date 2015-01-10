@@ -89,5 +89,5 @@ Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/hidde
 
 ## License
 
-MIT - see [LICENSE.md](https://github.com/hiddentao/generator-compose/blob/master/LICENSE.md)dd
+MIT - see [LICENSE.md](https://github.com/hiddentao/generator-compose/blob/master/LICENSE.md)
 
