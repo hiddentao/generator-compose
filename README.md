@@ -58,6 +58,7 @@ middleware in the chain.
 By default the `this` context within each middleware method is the same as that 
 for the outer call:
 
+
 ```js
 var middleware = [
   function*(next) {
@@ -89,3 +90,4 @@ Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/hidde
 ## License
 
 MIT - see [LICENSE.md](https://github.com/hiddentao/generator-compose/blob/master/LICENSE.md)dd
+
