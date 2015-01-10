@@ -15,6 +15,61 @@ $ npm install generator-compose
 
 ## Usage
 
+```js
+var compose = require('generator-compose');
+
+var middleware = [
+  function*(param1, param2, next) {
+    // do some stuff...
+
+    yield next;
+  },
+  function*(param1, param2, next) {
+    // do some stuff...
+
+    yield next;
+
+    // do some more stuff if you like...
+  },
+  function*(param1, param2, next) {
+    // do some stuff...
+
+    yield next;
+  }
+];
+
+// example parameters
+var obj1 = {},
+  obj2 = {};
+
+try {
+  var fn = yield compose(middleware)
+
+  fn(obj1, obj2);
+} catch (err) {
+  // catch error thrown from within middleware methods
+}
+```
+
+By default the `this` context within each middleware method is the same as that 
+for the outer call:
+
+```js
+var middleware = [
+  function*(next) {
+    console.log(this.value);  // 2
+
+    yield next;
+  },
+];
+
+this.value = 2;
+
+var fn = yield compose(middleware);
+
+fn();  // same as: composedFn.call(this)
+```
+
 ## Building
 
 To run the tests:
@@ -29,4 +84,4 @@ Contributions are welcome! Please see [CONTRIBUTING.md](https://github.com/hidde
 
 ## License
 
-MIT - see [LICENSE.md](https://github.com/hiddentao/generator-compose/blob/master/LICENSE.md)
+MIT - see [LICENSE.md](https://github.com/hiddentao/generator-compose/blob/master/LICENSE.md)dd

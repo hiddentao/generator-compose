@@ -1,15 +1,29 @@
-module.exports = compose;
+"use strict";
+
+
+
+/**
+ * Dummy
+ *
+ * @api private
+ */
+var noop = function *() {}
+
+
+
 
 /**
  * Compose `middleware` returning a fully valid middleware 
  * comprised of all those which are passed.
  *
- * @param {Array} middleware
- * @return {Function}
+ * @param {Array} middleware Array of generator functions which except the the `next` callback as the last parameter.
+ * @return {Function} "one generator function to rule (i.e. run) them all".
  * @api public
  */
 
-module.exports = compose = function(middleware){
+module.exports = function(middleware){
+  middleware = middleware || [];
+
   /**
    * We pass all incoming arguments to each middleware function.
    */
@@ -24,14 +38,7 @@ module.exports = compose = function(middleware){
       next = middleware[i].apply(this, args.concat(next));
     }
 
-    yield *next;
+    yield * next;
   }
 }
 
-
-/**
- * Noop.
- *
- * @api private
- */
-function *noop() {}

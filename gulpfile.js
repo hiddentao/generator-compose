@@ -5,8 +5,10 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var runSequence = require('run-sequence');
 
+require('co-mocha');
 
-var srcFile = './simple-mongo-schema.js';
+
+var srcFile = './index.js';
 var buildFolder = '.'
 
 
